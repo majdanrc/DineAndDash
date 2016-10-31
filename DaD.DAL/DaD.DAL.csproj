@@ -49,23 +49,41 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DineAndDashContext.cs" />
+    <Compile Include="DineAndDashInitializer.cs" />
+    <Compile Include="Dto\OrderEntryDto.cs" />
+    <Compile Include="Dto\OrderDto.cs" />
+    <Compile Include="Dto\MenuItemDto.cs" />
     <Compile Include="Enums\Category.cs" />
-    <Compile Include="Migrations\201610302245594_01_initial.cs" />
-    <Compile Include="Migrations\201610302245594_01_initial.Designer.cs">
-      <DependentUpon>201610302245594_01_initial.cs</DependentUpon>
+    <Compile Include="Enums\EnumHelper.cs" />
+    <Compile Include="Migrations\201610311200172_01_initial.cs" />
+    <Compile Include="Migrations\201610311200172_01_initial.Designer.cs">
+      <DependentUpon>201610311200172_01_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\MenuItemQueries.cs" />
+    <Compile Include="Repositories\MenuItemRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610302245594_01_initial.resx">
-      <DependentUpon>201610302245594_01_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610311200172_01_initial.resx">
+      <DependentUpon>201610311200172_01_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

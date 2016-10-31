@@ -8,9 +8,11 @@ namespace DaD.DAL
         public DineAndDashContext()
             : base("DineAndDashDBConnectionString")
         {
+            Database.SetInitializer(new DineAndDashInitializer());
         }
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
+        public DbSet<OrderEntry> OrderEntries { get; set; }
     }
 }
