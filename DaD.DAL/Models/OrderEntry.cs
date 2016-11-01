@@ -1,9 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DaD.DAL.Models
 {
     public class OrderEntry
     {
+        public OrderEntry()
+        {
+            Children = new HashSet<OrderEntry>();
+        }
+
         public int OrderEntryId { get; set; }
 
         public int MenuItemId { get; set; }
@@ -16,5 +22,7 @@ namespace DaD.DAL.Models
 
         public int OrderId { get; set; }
         public virtual Order Order { get; set; }
+
+        public virtual ICollection<OrderEntry> Children { get; set; }
     }
 }

@@ -10,15 +10,33 @@ namespace DaD.DAL.Dto
         public int Id { get; set; }
         public DateTime CreatedOn { get; set; }
         public List<OrderEntryDto> OrderItems { get; set; }
+        public string Notes { get; set; }
+
+        public OrderDto()
+        {
+            OrderItems = new List<OrderEntryDto>();
+        }
 
         public OrderDto(Order entity)
         {
             Id = entity.OrderId;
             CreatedOn = entity.CreatedOn;
+            Notes = entity.Notes;
 
             var entries = entity.OrderEntries.ToList();
 
             OrderItems = entries.Select(oe => new OrderEntryDto(oe)).ToList();
+        }
+
+        public Order CreateOrderEntity()
+        {
+            var order = new Order
+            {
+                CreatedOn = CreatedOn,
+                Notes = Notes
+            };
+
+            return order;
         }
     }
 }

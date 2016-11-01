@@ -8,34 +8,19 @@ using DaD.DAL.Dto;
 using DaD.DAL.Queries;
 using DaD.DAL.Repositories;
 using DineAndDash.ControlModels;
+using DineAndDash.Properties;
 
 namespace DineAndDash
 {
     public partial class DaDMainForm : Form
     {
-        private readonly List<MenuItemDto> _menuItems;
+        private List<MenuItemDto> _menuItems;
 
         public DaDMainForm()
         {
             InitializeComponent();
 
-            try
-            {
-                if (_menuItems == null)
-                {
-                    _menuItems = MenuItemRepository.GetMenuItems();
-                }
-
-                var categories = _menuItems.Select(c => c.Category).Distinct().ToList();
-
-                var categoryItems = categories.Select(c => new MenuListItem(c)).ToList();
-
-                categorySelect.Items.AddRange((MenuListItem[])categoryItems.ToArray());
-            }
-            catch (Exception)
-            {
-                // ignored, code that can throw exceptions should be used in constructor
-            }
+            NewOrder();
         }
 
         private void categorySelect_SelectedIndexChanged(object sender, EventArgs e)
@@ -98,20 +83,6 @@ namespace DineAndDash
 
         }
 
-        private void RecalculatePrice()
-        {
-            var totalPrice = 0.0M;
-
-            foreach (var orderTreeNode in orderTree.Nodes.Cast<MenuNodeItem>())
-            {
-                totalPrice += orderTreeNode.Price;
-
-                totalPrice += orderTreeNode.Nodes.Cast<MenuNodeItem>().Sum(extraNode => extraNode.Price);
-            }
-
-            lblTotalPrice.Text = totalPrice.ToString(CultureInfo.InvariantCulture);
-        }
-
         private void orderTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             var selectedNode = (MenuNodeItem)orderTree.SelectedNode;
@@ -130,7 +101,100 @@ namespace DineAndDash
 
         private void btnPlaceOrder_Click(object sender, EventArgs e)
         {
+            PlaceOrder();
+        }
 
+        private void btnNewOrder_Click(object sender, EventArgs e)
+        {
+            var response = MessageBox.Show(Resources.NewOrderConfirmation,
+                Resources.NewOrderDialog,
+                MessageBoxButtons.YesNo);
+
+            if (response == DialogResult.Yes)
+            {
+                ClearOrder();
+                NewOrder();
+            }
+        }
+
+        private void RecalculatePrice()
+        {
+            var totalPrice = 0.0M;
+
+            foreach (var orderTreeNode in orderTree.Nodes.Cast<MenuNodeItem>())
+            {
+                totalPrice += orderTreeNode.Price;
+
+                totalPrice += orderTreeNode.Nodes.Cast<MenuNodeItem>().Sum(extraNode => extraNode.Price);
+            }
+
+            lblTotalPrice.Text = totalPrice.ToString(CultureInfo.InvariantCulture);
+        }
+
+        private void ClearOrder()
+        {
+            orderTree.Nodes.Clear();
+            dishSelect.Items.Clear();
+            extras.Items.Clear();            
+        }
+
+        private void NewOrder()
+        {
+            try
+            {
+                _menuItems = MenuItemRepository.GetMenuItems();
+
+                var categories = _menuItems.Select(c => c.Category).Distinct().ToList();
+                var categoryItems = categories.Select(c => new MenuListItem(c)).ToList();
+
+                categorySelect.Items.Clear();
+                categorySelect.Items.AddRange((MenuListItem[])categoryItems.ToArray());
+
+                RecalculatePrice();
+            }
+            catch (Exception)
+            {
+                // ignored, but code that can throw exceptions shouldn't be used in constructor
+            }
+        }
+
+        private void PlaceOrder()
+        {
+            var order = new OrderDto
+            {
+                CreatedOn = DateTime.UtcNow,
+                Notes = rtbNotes.Text
+            };
+
+            foreach (var mainNode in orderTree.Nodes.Cast<MenuNodeItem>())
+            {
+                var orderEntry = new OrderEntryDto
+                {
+                    MenuItemId = mainNode.MenuItemId
+                };
+
+                foreach (var extra in mainNode.Nodes.Cast<MenuNodeItem>())
+                {
+                    var extraEntry = new OrderEntryDto
+                    {
+                        MenuItemId = extra.MenuItemId
+                    };
+
+                    orderEntry.Extras.Add(extraEntry);
+                }
+
+                order.OrderItems.Add(orderEntry);
+            }
+
+            OrderRepository.SaveOrder(order);
+
+            ClearOrder();
+            NewOrder();
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            var test = OrderRepository.GetOrderById(2);
         }
     }
 }

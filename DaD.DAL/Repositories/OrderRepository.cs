@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DaD.DAL.Dto;
 using DaD.DAL.Models;
 
@@ -30,7 +27,31 @@ namespace DaD.DAL.Repositories
 
                 if (originalOrder == null)
                 {
-                    
+                    var order = orderDto.CreateOrderEntity();
+
+                    foreach (var orderItem in orderDto.OrderItems)
+                    {
+                        var orderEntry = new OrderEntry
+                        {
+                            MenuItemId = orderItem.MenuItemId
+                        };
+
+                        foreach (var extra in orderItem.Extras)
+                        {
+                            var extraEntry = new OrderEntry
+                            {
+                                MenuItemId = extra.MenuItemId,
+                                Parent = orderEntry
+                            };
+
+                            orderEntry.Children.Add(extraEntry);
+                        }
+
+                        order.OrderEntries.Add(orderEntry);
+                    }
+
+                    context.Orders.Add(order);
+                    context.SaveChanges();
                 }
             }
 
