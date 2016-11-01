@@ -91,9 +91,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DaD.DAL\DaD.DAL.csproj">
+    <ProjectReference Include="..\BackOffice\BackOffice.csproj">
+      <Project>{1B971978-368D-41CC-98A1-C119A5B32640}</Project>
+      <Name>BackOffice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DaD.DAL\DAL.csproj">
       <Project>{B51C5C5A-7564-4EE3-9BB0-6B6E713CFD98}</Project>
-      <Name>DaD.DAL</Name>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

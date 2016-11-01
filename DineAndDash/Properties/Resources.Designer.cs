@@ -61,6 +61,24 @@ namespace DineAndDash.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zamówienie jest puste!.
+        /// </summary>
+        internal static string EmptyOrder {
+            get {
+                return ResourceManager.GetString("EmptyOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Błąd.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Czy chcesz rozpocząć nowe zamówienie (aktualne zostanie usunięte).
         /// </summary>
         internal static string NewOrderConfirmation {

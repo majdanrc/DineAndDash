@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaD.DAL", "DaD.DAL\DaD.DAL.csproj", "{B51C5C5A-7564-4EE3-9BB0-6B6E713CFD98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DaD.DAL\DAL.csproj", "{B51C5C5A-7564-4EE3-9BB0-6B6E713CFD98}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DineAndDash", "DineAndDash\DineAndDash.csproj", "{77A5C00E-E8ED-4A04-B8EA-66DACE5200BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackOffice", "BackOffice\BackOffice.csproj", "{1B971978-368D-41CC-98A1-C119A5B32640}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{77A5C00E-E8ED-4A04-B8EA-66DACE5200BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77A5C00E-E8ED-4A04-B8EA-66DACE5200BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77A5C00E-E8ED-4A04-B8EA-66DACE5200BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B971978-368D-41CC-98A1-C119A5B32640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B971978-368D-41CC-98A1-C119A5B32640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B971978-368D-41CC-98A1-C119A5B32640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B971978-368D-41CC-98A1-C119A5B32640}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

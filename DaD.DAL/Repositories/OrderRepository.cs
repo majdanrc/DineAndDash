@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using DaD.DAL.Dto;
 using DaD.DAL.Models;
@@ -17,45 +18,57 @@ namespace DaD.DAL.Repositories
             }
         }
 
-        public static bool SaveOrder(OrderDto orderDto)
+        public static int SaveOrder(OrderDto orderDto)
         {
-            using (var context = new DineAndDashContext())
+            var orderId = 0;
+
+            try
             {
-                var originalOrder = orderDto.Id != 0
-                    ? context.Set<Order>().FirstOrDefault(o => o.OrderId == orderDto.Id)
-                    : null;
-
-                if (originalOrder == null)
+                using (var context = new DineAndDashContext())
                 {
-                    var order = orderDto.CreateOrderEntity();
+                    var originalOrder = orderDto.Id != 0
+                        ? context.Set<Order>().FirstOrDefault(o => o.OrderId == orderDto.Id)
+                        : null;
 
-                    foreach (var orderItem in orderDto.OrderItems)
+                    if (originalOrder == null)
                     {
-                        var orderEntry = new OrderEntry
-                        {
-                            MenuItemId = orderItem.MenuItemId
-                        };
+                        var order = orderDto.CreateOrderEntity();
 
-                        foreach (var extra in orderItem.Extras)
+                        foreach (var orderItem in orderDto.OrderItems)
                         {
-                            var extraEntry = new OrderEntry
+                            var orderEntry = new OrderEntry
                             {
-                                MenuItemId = extra.MenuItemId,
-                                Parent = orderEntry
+                                MenuItemId = orderItem.MenuItemId
                             };
 
-                            orderEntry.Children.Add(extraEntry);
+                            foreach (var extra in orderItem.Extras)
+                            {
+                                var extraEntry = new OrderEntry
+                                {
+                                    MenuItemId = extra.MenuItemId,
+                                    Parent = orderEntry
+                                };
+
+                                orderEntry.Children.Add(extraEntry);
+                            }
+
+                            order.OrderEntries.Add(orderEntry);
                         }
 
-                        order.OrderEntries.Add(orderEntry);
-                    }
+                        context.Orders.Add(order);
+                        context.SaveChanges();
 
-                    context.Orders.Add(order);
-                    context.SaveChanges();
+                        orderId = order.OrderId;
+                    }
                 }
             }
+            catch (Exception exc)
+            {
+                Debug.WriteLine(exc.Message);
+                orderId = 0;
+            }
 
-            return true;
+            return orderId;
         }
     }
 }

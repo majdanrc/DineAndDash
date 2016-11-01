@@ -123,4 +123,10 @@
   <data name="NewOrderDialog" xml:space="preserve">
     <value>Nowe zamówienie</value>
   </data>
+  <data name="EmptyOrder" xml:space="preserve">
+    <value>Zamówienie jest puste!</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Błąd</value>
+  </data>
 </root>

@@ -43,7 +43,6 @@
             this.btnNewOrder = new System.Windows.Forms.Button();
             this.lblExtras = new System.Windows.Forms.Label();
             this.lblNotes = new System.Windows.Forms.Label();
-            this.btnTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // categorySelect
@@ -187,22 +186,11 @@
             this.lblNotes.TabIndex = 14;
             this.lblNotes.Text = "uwagi";
             // 
-            // btnTest
-            // 
-            this.btnTest.Location = new System.Drawing.Point(486, 373);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(75, 23);
-            this.btnTest.TabIndex = 15;
-            this.btnTest.Text = "test";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
-            // 
             // DaDMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 412);
-            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.lblNotes);
             this.Controls.Add(this.lblExtras);
             this.Controls.Add(this.btnNewOrder);
@@ -242,7 +230,6 @@
         private System.Windows.Forms.Button btnNewOrder;
         private System.Windows.Forms.Label lblExtras;
         private System.Windows.Forms.Label lblNotes;
-        private System.Windows.Forms.Button btnTest;
     }
 }
 

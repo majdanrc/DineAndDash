@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using DaD.BackOffice.Services;
 using DaD.DAL.Dto;
 using DaD.DAL.Queries;
 using DaD.DAL.Repositories;
@@ -15,10 +16,15 @@ namespace DineAndDash
     public partial class DaDMainForm : Form
     {
         private List<MenuItemDto> _menuItems;
+        private readonly OrderingService _orderingService;
+        private readonly MailingService _mailingService;
 
         public DaDMainForm()
         {
             InitializeComponent();
+
+            _orderingService = new OrderingService();
+            _mailingService = new MailingService();
 
             NewOrder();
         }
@@ -134,8 +140,9 @@ namespace DineAndDash
         private void ClearOrder()
         {
             orderTree.Nodes.Clear();
+            rtbNotes.Text = string.Empty;
             dishSelect.Items.Clear();
-            extras.Items.Clear();            
+            extras.Items.Clear();     
         }
 
         private void NewOrder()
@@ -160,6 +167,12 @@ namespace DineAndDash
 
         private void PlaceOrder()
         {
+            if (orderTree.Nodes.Count == 0)
+            {
+                MessageBox.Show(Resources.EmptyOrder, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var order = new OrderDto
             {
                 CreatedOn = DateTime.UtcNow,
@@ -186,15 +199,11 @@ namespace DineAndDash
                 order.OrderItems.Add(orderEntry);
             }
 
-            OrderRepository.SaveOrder(order);
+            var savedOrder = _orderingService.PlaceOrder(order);
+            _mailingService.SendOrder(savedOrder);
 
             ClearOrder();
             NewOrder();
-        }
-
-        private void btnTest_Click(object sender, EventArgs e)
-        {
-            var test = OrderRepository.GetOrderById(2);
         }
     }
 }

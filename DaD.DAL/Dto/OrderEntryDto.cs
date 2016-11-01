@@ -14,6 +14,8 @@ namespace DaD.DAL.Dto
         {
             Id = entity.OrderEntryId;
             MenuItemId = entity.MenuItemId;
+            ItemName = entity.MenuItem.Name;
+            Extra = entity.MenuItem.Extra;
             Extras = new List<OrderEntryDto>();
 
             foreach (var extra in entity.Children)
@@ -25,6 +27,10 @@ namespace DaD.DAL.Dto
         public int Id { get; set; }
 
         public int MenuItemId { get; set; }
+
+        public string ItemName { get; set; }
+
+        public bool Extra { get; set; }
 
         public List<OrderEntryDto> Extras { get; set; }
     }
