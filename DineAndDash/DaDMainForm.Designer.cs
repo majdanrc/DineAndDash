@@ -43,12 +43,16 @@
             this.btnNewOrder = new System.Windows.Forms.Button();
             this.lblExtras = new System.Windows.Forms.Label();
             this.lblNotes = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.orderHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnRemoveItem = new System.Windows.Forms.Button();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // categorySelect
             // 
             this.categorySelect.FormattingEnabled = true;
-            this.categorySelect.Location = new System.Drawing.Point(12, 67);
+            this.categorySelect.Location = new System.Drawing.Point(11, 97);
             this.categorySelect.Name = "categorySelect";
             this.categorySelect.Size = new System.Drawing.Size(270, 56);
             this.categorySelect.TabIndex = 0;
@@ -57,7 +61,7 @@
             // dishSelect
             // 
             this.dishSelect.FormattingEnabled = true;
-            this.dishSelect.Location = new System.Drawing.Point(12, 155);
+            this.dishSelect.Location = new System.Drawing.Point(11, 185);
             this.dishSelect.Name = "dishSelect";
             this.dishSelect.Size = new System.Drawing.Size(270, 56);
             this.dishSelect.TabIndex = 1;
@@ -65,14 +69,14 @@
             // extras
             // 
             this.extras.FormattingEnabled = true;
-            this.extras.Location = new System.Drawing.Point(12, 243);
+            this.extras.Location = new System.Drawing.Point(11, 273);
             this.extras.Name = "extras";
             this.extras.Size = new System.Drawing.Size(270, 56);
             this.extras.TabIndex = 2;
             // 
             // orderTree
             // 
-            this.orderTree.Location = new System.Drawing.Point(355, 12);
+            this.orderTree.Location = new System.Drawing.Point(354, 42);
             this.orderTree.Name = "orderTree";
             this.orderTree.Size = new System.Drawing.Size(422, 287);
             this.orderTree.TabIndex = 3;
@@ -80,7 +84,7 @@
             // 
             // btnAddDish
             // 
-            this.btnAddDish.Location = new System.Drawing.Point(288, 155);
+            this.btnAddDish.Location = new System.Drawing.Point(287, 185);
             this.btnAddDish.Name = "btnAddDish";
             this.btnAddDish.Size = new System.Drawing.Size(61, 56);
             this.btnAddDish.TabIndex = 4;
@@ -90,7 +94,7 @@
             // 
             // btnAddExtra
             // 
-            this.btnAddExtra.Location = new System.Drawing.Point(288, 243);
+            this.btnAddExtra.Location = new System.Drawing.Point(287, 273);
             this.btnAddExtra.Name = "btnAddExtra";
             this.btnAddExtra.Size = new System.Drawing.Size(61, 56);
             this.btnAddExtra.TabIndex = 5;
@@ -102,7 +106,7 @@
             // 
             this.lblTotalPrice.AutoSize = true;
             this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblTotalPrice.Location = new System.Drawing.Point(437, 335);
+            this.lblTotalPrice.Location = new System.Drawing.Point(436, 382);
             this.lblTotalPrice.Name = "lblTotalPrice";
             this.lblTotalPrice.Size = new System.Drawing.Size(19, 20);
             this.lblTotalPrice.TabIndex = 6;
@@ -112,7 +116,7 @@
             // 
             this.lblTotalTitle.AutoSize = true;
             this.lblTotalTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblTotalTitle.Location = new System.Drawing.Point(351, 335);
+            this.lblTotalTitle.Location = new System.Drawing.Point(350, 382);
             this.lblTotalTitle.Name = "lblTotalTitle";
             this.lblTotalTitle.Size = new System.Drawing.Size(80, 20);
             this.lblTotalTitle.TabIndex = 7;
@@ -120,9 +124,9 @@
             // 
             // btnPlaceOrder
             // 
-            this.btnPlaceOrder.Location = new System.Drawing.Point(567, 331);
+            this.btnPlaceOrder.Location = new System.Drawing.Point(566, 335);
             this.btnPlaceOrder.Name = "btnPlaceOrder";
-            this.btnPlaceOrder.Size = new System.Drawing.Size(210, 65);
+            this.btnPlaceOrder.Size = new System.Drawing.Size(210, 91);
             this.btnPlaceOrder.TabIndex = 8;
             this.btnPlaceOrder.Text = "wyślij zamówienie";
             this.btnPlaceOrder.UseVisualStyleBackColor = true;
@@ -130,7 +134,7 @@
             // 
             // rtbNotes
             // 
-            this.rtbNotes.Location = new System.Drawing.Point(13, 331);
+            this.rtbNotes.Location = new System.Drawing.Point(12, 361);
             this.rtbNotes.Name = "rtbNotes";
             this.rtbNotes.Size = new System.Drawing.Size(270, 65);
             this.rtbNotes.TabIndex = 9;
@@ -140,7 +144,7 @@
             // 
             this.lblCategory.AutoSize = true;
             this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblCategory.Location = new System.Drawing.Point(12, 51);
+            this.lblCategory.Location = new System.Drawing.Point(11, 81);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(41, 13);
             this.lblCategory.TabIndex = 10;
@@ -150,7 +154,7 @@
             // 
             this.lblDish.AutoSize = true;
             this.lblDish.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblDish.Location = new System.Drawing.Point(12, 139);
+            this.lblDish.Location = new System.Drawing.Point(11, 169);
             this.lblDish.Name = "lblDish";
             this.lblDish.Size = new System.Drawing.Size(50, 13);
             this.lblDish.TabIndex = 11;
@@ -158,7 +162,7 @@
             // 
             // btnNewOrder
             // 
-            this.btnNewOrder.Location = new System.Drawing.Point(12, 12);
+            this.btnNewOrder.Location = new System.Drawing.Point(11, 42);
             this.btnNewOrder.Name = "btnNewOrder";
             this.btnNewOrder.Size = new System.Drawing.Size(270, 23);
             this.btnNewOrder.TabIndex = 12;
@@ -170,7 +174,7 @@
             // 
             this.lblExtras.AutoSize = true;
             this.lblExtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblExtras.Location = new System.Drawing.Point(12, 227);
+            this.lblExtras.Location = new System.Drawing.Point(11, 257);
             this.lblExtras.Name = "lblExtras";
             this.lblExtras.Size = new System.Drawing.Size(49, 13);
             this.lblExtras.TabIndex = 13;
@@ -180,17 +184,45 @@
             // 
             this.lblNotes.AutoSize = true;
             this.lblNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblNotes.Location = new System.Drawing.Point(13, 315);
+            this.lblNotes.Location = new System.Drawing.Point(12, 345);
             this.lblNotes.Name = "lblNotes";
             this.lblNotes.Size = new System.Drawing.Size(40, 13);
             this.lblNotes.TabIndex = 14;
             this.lblNotes.Text = "uwagi";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.orderHistoryToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(789, 24);
+            this.menuStrip1.TabIndex = 15;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // orderHistoryToolStripMenuItem
+            // 
+            this.orderHistoryToolStripMenuItem.Name = "orderHistoryToolStripMenuItem";
+            this.orderHistoryToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
+            this.orderHistoryToolStripMenuItem.Text = "Historia zamówień";
+            this.orderHistoryToolStripMenuItem.Click += new System.EventHandler(this.orderHistoryToolStripMenuItem_Click);
+            // 
+            // btnRemoveItem
+            // 
+            this.btnRemoveItem.Location = new System.Drawing.Point(355, 335);
+            this.btnRemoveItem.Name = "btnRemoveItem";
+            this.btnRemoveItem.Size = new System.Drawing.Size(205, 23);
+            this.btnRemoveItem.TabIndex = 16;
+            this.btnRemoveItem.Text = "usuń pozycję";
+            this.btnRemoveItem.UseVisualStyleBackColor = true;
+            this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click);
+            // 
             // DaDMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(789, 412);
+            this.ClientSize = new System.Drawing.Size(789, 438);
+            this.Controls.Add(this.btnRemoveItem);
             this.Controls.Add(this.lblNotes);
             this.Controls.Add(this.lblExtras);
             this.Controls.Add(this.btnNewOrder);
@@ -206,8 +238,11 @@
             this.Controls.Add(this.extras);
             this.Controls.Add(this.dishSelect);
             this.Controls.Add(this.categorySelect);
+            this.Controls.Add(this.menuStrip1);
             this.Name = "DaDMainForm";
             this.Text = "DaDMainForm";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,6 +265,9 @@
         private System.Windows.Forms.Button btnNewOrder;
         private System.Windows.Forms.Label lblExtras;
         private System.Windows.Forms.Label lblNotes;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem orderHistoryToolStripMenuItem;
+        private System.Windows.Forms.Button btnRemoveItem;
     }
 }
 

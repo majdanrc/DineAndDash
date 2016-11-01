@@ -5,6 +5,12 @@ namespace DaD.DAL.Dto
 {
     public class OrderEntryDto
     {
+        public int Id { get; set; }
+        public int MenuItemId { get; set; }
+        public string ItemName { get; set; }
+        public bool Extra { get; set; }
+        public List<OrderEntryDto> Extras { get; set; }
+
         public OrderEntryDto()
         {
             Extras = new List<OrderEntryDto>();
@@ -23,15 +29,5 @@ namespace DaD.DAL.Dto
                 Extras.Add(new OrderEntryDto(extra));
             }
         }
-
-        public int Id { get; set; }
-
-        public int MenuItemId { get; set; }
-
-        public string ItemName { get; set; }
-
-        public bool Extra { get; set; }
-
-        public List<OrderEntryDto> Extras { get; set; }
     }
 }

@@ -129,4 +129,19 @@
   <data name="Error" xml:space="preserve">
     <value>Błąd</value>
   </data>
+  <data name="OrderSent" xml:space="preserve">
+    <value>Zamówienie zostało wysłane</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="OrderSaveError" xml:space="preserve">
+    <value>Nie udało się zapisać zamówienia</value>
+  </data>
+  <data name="OrderSendEmailError" xml:space="preserve">
+    <value>Zamówienie zostało złożone ale wystąpił problem przy wysłaniu emaila</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Ostrzeżenie</value>
+  </data>
 </root>

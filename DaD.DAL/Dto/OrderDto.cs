@@ -17,15 +17,18 @@ namespace DaD.DAL.Dto
             OrderItems = new List<OrderEntryDto>();
         }
 
-        public OrderDto(Order entity)
+        public OrderDto(Order entity, bool full = true)
         {
             Id = entity.OrderId;
             CreatedOn = entity.CreatedOn;
             Notes = entity.Notes;
+            OrderItems = new List<OrderEntryDto>();
 
-            var entries = entity.OrderEntries.ToList();
-
-            OrderItems = entries.Select(oe => new OrderEntryDto(oe)).ToList();
+            if (full)
+            {
+                var entries = entity.OrderEntries.ToList();
+                OrderItems = entries.Select(oe => new OrderEntryDto(oe)).ToList();
+            }
         }
 
         public Order CreateOrderEntity()

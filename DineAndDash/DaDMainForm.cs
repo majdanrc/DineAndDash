@@ -105,6 +105,26 @@ namespace DineAndDash
             topLevelNode.BackColor = Color.DarkKhaki;
         }
 
+        private void btnRemoveItem_Click(object sender, EventArgs e)
+        {
+            var selectedNode = (MenuNodeItem)orderTree.SelectedNode;
+
+            if (selectedNode == null || !selectedNode.IsSelected)
+                return;
+
+            if (!selectedNode.Extra)
+            {
+                orderTree.Nodes.Remove(selectedNode);
+            }
+            else
+            {
+                var parent = selectedNode.Parent;
+                parent.Nodes.Remove(selectedNode);
+            }
+
+            RecalculatePrice();
+        }
+
         private void btnPlaceOrder_Click(object sender, EventArgs e)
         {
             PlaceOrder();
@@ -121,6 +141,12 @@ namespace DineAndDash
                 ClearOrder();
                 NewOrder();
             }
+        }
+
+        private void orderHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var orderHistory = new OrderHistory();
+            orderHistory.Show();
         }
 
         private void RecalculatePrice()
@@ -200,7 +226,33 @@ namespace DineAndDash
             }
 
             var savedOrder = _orderingService.PlaceOrder(order);
-            _mailingService.SendOrder(savedOrder);
+
+            if (savedOrder == null)
+            {
+                MessageBox.Show(Resources.OrderSaveError,
+                    Resources.Error,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return;
+            }
+
+            var sent = _mailingService.SendOrder(savedOrder);
+
+            if (sent)
+            {
+                MessageBox.Show(Resources.OrderSent,
+                    Resources.Info,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);                
+            }
+            else
+            {
+                MessageBox.Show(Resources.OrderSendEmailError,
+                    Resources.Warning,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);                
+            }
 
             ClearOrder();
             NewOrder();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using DaD.DAL.Dto;
@@ -8,13 +9,31 @@ namespace DaD.DAL.Repositories
 {
     public static class OrderRepository
     {
+        public static List<OrderDto> GetOrdersWithoutEntries()
+        {
+            using (var context = new DineAndDashContext())
+            {
+                var orders = context.Set<Order>().ToList();
+
+                return orders.Select(o => new OrderDto(o, false)).ToList();
+            }
+        }
+
         public static OrderDto GetOrderById(int orderId)
         {
             using (var context = new DineAndDashContext())
             {
-                var order = context.Set<Order>().FirstOrDefault(o => o.OrderId == orderId);
+                try
+                {
+                    var order = context.Set<Order>().FirstOrDefault(o => o.OrderId == orderId);
 
-                return new OrderDto(order);
+                    return new OrderDto(order);
+                }
+                catch (Exception exc)
+                {
+                    Debug.WriteLine(exc.Message);
+                    return null;
+                }
             }
         }
 

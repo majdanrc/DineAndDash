@@ -79,6 +79,15 @@ namespace DineAndDash.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Info.
+        /// </summary>
+        internal static string Info {
+            get {
+                return ResourceManager.GetString("Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Czy chcesz rozpocząć nowe zamówienie (aktualne zostanie usunięte).
         /// </summary>
         internal static string NewOrderConfirmation {
@@ -93,6 +102,42 @@ namespace DineAndDash.Properties {
         internal static string NewOrderDialog {
             get {
                 return ResourceManager.GetString("NewOrderDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nie udało się zapisać zamówienia.
+        /// </summary>
+        internal static string OrderSaveError {
+            get {
+                return ResourceManager.GetString("OrderSaveError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zamówienie zostało złożone ale wystąpił problem przy wysłaniu emaila.
+        /// </summary>
+        internal static string OrderSendEmailError {
+            get {
+                return ResourceManager.GetString("OrderSendEmailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zamówienie zostało wysłane.
+        /// </summary>
+        internal static string OrderSent {
+            get {
+                return ResourceManager.GetString("OrderSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ostrzeżenie.
+        /// </summary>
+        internal static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
             }
         }
     }
