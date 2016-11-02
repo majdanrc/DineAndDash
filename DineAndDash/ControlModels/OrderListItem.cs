@@ -19,7 +19,9 @@ namespace DineAndDash.ControlModels
 
         public override string ToString()
         {
-            return string.Format("{0} - {1}", OrderId, CreatedOn.ToString(CultureInfo.InvariantCulture));
+            return string.Format("{0} - {1}",
+                OrderId,
+                CreatedOn.ToLocalTime().ToString(CultureInfo.InvariantCulture));
         }
     }
 }

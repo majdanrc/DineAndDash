@@ -28,7 +28,7 @@ namespace DaD.BackOffice.Services
                 var subject = string.Format("{0} {1} - {2}",
                     "Zamówienie nr ",
                     orderDto.Id,
-                    orderDto.CreatedOn.ToString(CultureInfo.InvariantCulture));
+                    orderDto.CreatedOn.ToLocalTime().ToString(CultureInfo.InvariantCulture));
                 var body = BuildBody(orderDto);
 
                 using (
